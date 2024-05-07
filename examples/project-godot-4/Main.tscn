@@ -1,6 +1,30 @@
-[gd_scene format=3 uid="uid://t2pame1skyok"]
+[gd_scene load_steps=7 format=3 uid="uid://t2pame1skyok"]
+
+[ext_resource type="PackedScene" uid="uid://ct85xm0de7n2g" path="res://model.glb" id="1_gsuyi"]
+[ext_resource type="Material" uid="uid://nqbsxnwpcnuu" path="res://mat.tres" id="2_416sn"]
+[ext_resource type="PackedScene" uid="uid://bxqdfp3vmd5ik" path="res://model_regular.glb" id="3_vdw1p"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kjw6p"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ovdww"]
+sky_material = SubResource("ProceduralSkyMaterial_kjw6p")
+
+[sub_resource type="Environment" id="Environment_q2c6b"]
+background_mode = 2
+sky = SubResource("Sky_ovdww")
+tonemap_mode = 2
+glow_enabled = true
 
 [node name="Node" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_q2c6b")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0.494843, -0.81389, 0.304488, 0.0716254, 0.387405, 0.919123, 0, 0, 0)
+shadow_enabled = true
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -13,3 +37,22 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 14.0
 text = "This is standard Godot"
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29322, 4)
+
+[node name="model" parent="Node3D" instance=ExtResource("1_gsuyi")]
+
+[node name="Suzanne" parent="Node3D/model" index="0"]
+material_override = ExtResource("2_416sn")
+
+[node name="model_regular" parent="." instance=ExtResource("3_vdw1p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Suzanne" parent="model_regular" index="0"]
+material_override = ExtResource("2_416sn")
+
+[editable path="Node3D/model"]
+[editable path="model_regular"]
