@@ -3,10 +3,6 @@ on:
     tags:
       - "v*-test"
 
-env:
-  GODOT_VERSION: "4.2.2"
-  GODOT_STATUS: "stable"
-
 jobs:
   export_game:
     runs-on: ubuntu-latest
@@ -23,8 +19,8 @@ jobs:
         id: export
         uses: firebelley/godot-export@v5.2.0
         with:
-          godot_executable_download_url: "https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-${{ env.GODOT_STATUS }}/Godot_v${{ env.GODOT_VERSION }}-${{ env.GODOT_STATUS }}_linux.x86_64.zip"
-          godot_export_templates_download_url: "https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-${{ env.GODOT_STATUS }}/Godot_v${{ env.GODOT_VERSION }}-${{ env.GODOT_STATUS }}_export_templates.tpz"
+          godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.0/Godot_v4.0-stable_linux.x86_64.zip
+          godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.0/Godot_v4.0-stable_export_templates.tpz
           relative_project_path: ./examples/project-godot-4 # build the standard project
           relative_export_path: ./my/build/destination # move export output to this directory relative to git root
           archive_output: true
@@ -36,5 +32,3 @@ jobs:
           generateReleaseNotes: true
           tag: ${{ github.ref_name }}
           artifacts: ${{ steps.export.outputs.archive_directory }}/* # Added "/*" at the end is glob pattern match for this action
-
-          

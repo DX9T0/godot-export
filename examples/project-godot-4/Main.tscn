@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://t2pame1skyok"]
 
 [ext_resource type="PackedScene" uid="uid://ct85xm0de7n2g" path="res://model.glb" id="1_gsuyi"]
-[ext_resource type="Material" uid="uid://nqbsxnwpcnuu" path="res://mat.tres" id="2_416sn"]
+[ext_resource type="Material" path="res://mat.tres" id="2_416sn"]
 [ext_resource type="PackedScene" uid="uid://bxqdfp3vmd5ik" path="res://model_regular.glb" id="3_vdw1p"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kjw6p"]
